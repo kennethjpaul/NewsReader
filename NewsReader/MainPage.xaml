@@ -13,6 +13,7 @@
             x:Name="navigationPanel"
             IsBackEnabled ="True"           
             BackRequested="BackButton_Clicked"
+            
             >
 
             <Frame x:Name="contentFrame"></Frame>

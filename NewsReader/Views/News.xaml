@@ -10,5 +10,9 @@
 
     <Grid>
         <TextBlock Name="testPageID">News</TextBlock>
+        <ScrollViewer HorizontalScrollMode="Auto">
+        <VariableSizedWrapGrid Height="auto" Width="auto" Orientation="Horizontal">
+        </VariableSizedWrapGrid>
+        </ScrollViewer>
     </Grid>
 </Page>

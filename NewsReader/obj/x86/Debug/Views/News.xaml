@@ -10,6 +10,20 @@
 
     <Grid>
         <TextBlock x:ConnectionId='2' Name="testPageID">News</TextBlock>
+        <ScrollViewer HorizontalScrollMode="Auto">
+        <VariableSizedWrapGrid Height="auto" Width="auto" Orientation="Horizontal">
+            <Button Width="400" Height="100">1</Button>
+                <Button Width="400" Height="100">2</Button>
+                <Button Width="400" Height="100">3</Button>
+                <Button Width="400" Height="100">4</Button>
+                <Button Width="400" Height="100">5</Button>
+                <Button Width="400" Height="100">6</Button>
+                <Button Width="400" Height="100">7</Button>
+                <Button Width="400" Height="100">8</Button>
+                <Button Width="400" Height="100">9</Button>
+                <Button Width="400" Height="100">9</Button>
+        </VariableSizedWrapGrid>
+        </ScrollViewer>
     </Grid>
 </Page>
 
