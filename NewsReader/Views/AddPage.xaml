@@ -1,0 +1,41 @@
+﻿<Page
+    x:Class="NewsReader.Views.AddPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:NewsReader.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Column="1" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center">Add Pages</TextBlock>
+        <RelativePanel Grid.Column="1" Grid.Row="1" VerticalAlignment="Center">
+            <TextBlock Name="comboLabel">Category</TextBlock>
+            <ComboBox Name="comboBoxList " ItemsSource="{x:Bind comboList}" RelativePanel.Below="comboLabel" Width="150"></ComboBox>
+        </RelativePanel>
+        <RelativePanel Grid.Column="1" Grid.Row="2" VerticalAlignment="Center">
+        <TextBlock Name="NameLabel">Name</TextBlock>
+         <TextBox Name="PageName" RelativePanel.Below="NameLabel" Width="200"></TextBox>
+        </RelativePanel>
+
+        <RelativePanel Grid.Column="1" Grid.Row="3" VerticalAlignment="Center">
+            <TextBlock Name="UrlLabel">Facebook Url</TextBlock>
+            <TextBox Name="UrlName" RelativePanel.Below="UrlLabel" Width="200"></TextBox>
+        </RelativePanel>
+        <Button Name="AddData" Grid.Column="1" Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Center" Click="AddData_Click">Add</Button>
+    </Grid>
+</Page>

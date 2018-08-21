@@ -1,0 +1,1 @@
+D:\Personal\Projects\C#\UWP\NewsReader\NewsReader\NewsReader\NewsReader.csproj;x86
