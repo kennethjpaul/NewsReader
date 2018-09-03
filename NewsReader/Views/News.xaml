@@ -5,14 +5,35 @@
     xmlns:local="using:NewsReader.Views"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid>
-        <TextBlock Name="testPageID">News</TextBlock>
-        <ScrollViewer HorizontalScrollMode="Auto">
-        <VariableSizedWrapGrid Height="auto" Width="auto" Orientation="Horizontal">
-        </VariableSizedWrapGrid>
+    <Grid Name="NewsGrid">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <controls:Loading x:Name="LoadingControl" IsLoading="{Binding IsBusy}"  >
+            <StackPanel Orientation="Horizontal" Padding="12">
+                <Grid Margin="0,0,8,0">
+                    <Image Source="../../Assets/ToolkitLogo.png" Height="50" />
+                    <ProgressRing IsActive="True" Foreground="Blue" />
+                </Grid>
+                <TextBlock Text="It's ok, we are working on it :)" Foreground="Black" VerticalAlignment="Center" />
+            </StackPanel>
+        </controls:Loading>
+        <Button x:Name="hideBrowser" Visibility="Collapsed" Grid.Row="0" Click="HideBrowser_Click"> Close Browser</Button>
+        <ScrollViewer HorizontalScrollMode="Auto" x:Name="scrollTest" Grid.Row="1" Grid.RowSpan="7">
+            <VariableSizedWrapGrid Height="auto" Width="auto" Orientation="Horizontal" x:Name="scrollTest2">                
+            </VariableSizedWrapGrid>
         </ScrollViewer>
+        <WebView x:Name="WebBrowser" Visibility="Collapsed"  Grid.Row="1" Grid.RowSpan="7"></WebView>
     </Grid>
 </Page>

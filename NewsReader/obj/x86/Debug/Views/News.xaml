@@ -5,25 +5,36 @@
     xmlns:local="using:NewsReader.Views"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid>
-        <TextBlock x:ConnectionId='2' Name="testPageID">News</TextBlock>
-        <ScrollViewer HorizontalScrollMode="Auto">
-        <VariableSizedWrapGrid Height="auto" Width="auto" Orientation="Horizontal">
-            <Button Width="400" Height="100">1</Button>
-                <Button Width="400" Height="100">2</Button>
-                <Button Width="400" Height="100">3</Button>
-                <Button Width="400" Height="100">4</Button>
-                <Button Width="400" Height="100">5</Button>
-                <Button Width="400" Height="100">6</Button>
-                <Button Width="400" Height="100">7</Button>
-                <Button Width="400" Height="100">8</Button>
-                <Button Width="400" Height="100">9</Button>
-                <Button Width="400" Height="100">9</Button>
-        </VariableSizedWrapGrid>
+    <Grid x:ConnectionId='2' Name="NewsGrid">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <controls:Loading x:ConnectionId='3' x:Name="LoadingControl" IsLoading="{Binding IsBusy}"  >
+            <StackPanel Orientation="Horizontal" Padding="12">
+                <Grid Margin="0,0,8,0">
+                    <Image Source="../../Assets/ToolkitLogo.png" Height="50" />
+                    <ProgressRing IsActive="True" Foreground="Blue" />
+                </Grid>
+                <TextBlock Text="It's ok, we are working on it :)" Foreground="Black" VerticalAlignment="Center" />
+            </StackPanel>
+        </controls:Loading>
+        <Button x:ConnectionId='4' x:Name="hideBrowser" Visibility="Collapsed" Grid.Row="0"                          > Close Browser</Button>
+        <ScrollViewer x:ConnectionId='5' HorizontalScrollMode="Auto" x:Name="scrollTest" Grid.Row="1" Grid.RowSpan="7">
+            <VariableSizedWrapGrid x:ConnectionId='7' Height="auto" Width="auto" Orientation="Horizontal" x:Name="scrollTest2">                
+            </VariableSizedWrapGrid>
         </ScrollViewer>
+        <WebView x:ConnectionId='6' x:Name="WebBrowser" Visibility="Collapsed"  Grid.Row="1" Grid.RowSpan="7"></WebView>
     </Grid>
 </Page>
 

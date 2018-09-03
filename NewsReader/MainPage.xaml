@@ -15,8 +15,9 @@
             BackRequested="BackButton_Clicked"
             
             >
-
+    
             <Frame x:Name="contentFrame"></Frame>
         </NavigationView>
+       
     </Grid>
 </Page>

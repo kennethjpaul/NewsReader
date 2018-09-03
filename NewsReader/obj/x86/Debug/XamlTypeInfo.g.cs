@@ -117,6 +117,18 @@ namespace NewsReader.NewsReader_XamlTypeInfo
                 {
                     xamlType = CreateXamlType(typeIndex);
                 }
+                var userXamlType = xamlType as global::NewsReader.NewsReader_XamlTypeInfo.XamlUserType;
+                if(xamlType == null || (userXamlType != null && userXamlType.IsReturnTypeStub && !userXamlType.IsLocalType))
+                {
+                    global::Windows.UI.Xaml.Markup.IXamlType libXamlType = CheckOtherMetadataProvidersForType(type);
+                    if (libXamlType != null)
+                    {
+                        if(libXamlType.IsConstructible || xamlType == null)
+                        {
+                            xamlType = libXamlType;
+                        }
+                    }
+                }
                 if (xamlType != null)
                 {
                     _xamlTypeCacheByName.Add(xamlType.FullName, xamlType);
@@ -143,6 +155,18 @@ namespace NewsReader.NewsReader_XamlTypeInfo
                 if(typeIndex != -1)
                 {
                     xamlType = CreateXamlType(typeIndex);
+                }
+                var userXamlType = xamlType as global::NewsReader.NewsReader_XamlTypeInfo.XamlUserType;
+                if(xamlType == null || (userXamlType != null && userXamlType.IsReturnTypeStub && !userXamlType.IsLocalType))
+                {
+                    global::Windows.UI.Xaml.Markup.IXamlType libXamlType = CheckOtherMetadataProvidersForName(typeName);
+                    if (libXamlType != null)
+                    {
+                        if(libXamlType.IsConstructible || xamlType == null)
+                        {
+                            xamlType = libXamlType;
+                        }
+                    }
                 }
                 if (xamlType != null)
                 {
@@ -189,25 +213,59 @@ namespace NewsReader.NewsReader_XamlTypeInfo
 
         private void InitTypeTables()
         {
-            _typeNameTable = new string[8];
+            _typeNameTable = new string[25];
             _typeNameTable[0] = "NewsReader.MainPage";
             _typeNameTable[1] = "Windows.UI.Xaml.Controls.Page";
             _typeNameTable[2] = "Windows.UI.Xaml.Controls.UserControl";
-            _typeNameTable[3] = "NewsReader.Views.AddPage";
-            _typeNameTable[4] = "NewsReader.Views.DeletePage";
-            _typeNameTable[5] = "NewsReader.Views.Home";
-            _typeNameTable[6] = "NewsReader.Views.Memes";
-            _typeNameTable[7] = "NewsReader.Views.News";
+            _typeNameTable[3] = "NewsReader.NewsTemplate";
+            _typeNameTable[4] = "String";
+            _typeNameTable[5] = "Windows.UI.Xaml.Media.ImageSource";
+            _typeNameTable[6] = "NewsReader.Views.AddPage";
+            _typeNameTable[7] = "NewsReader.Views.DeletePage";
+            _typeNameTable[8] = "NewsReader.Views.Home";
+            _typeNameTable[9] = "NewsReader.Views.Memes";
+            _typeNameTable[10] = "Microsoft.Toolkit.Uwp.UI.Controls.Loading";
+            _typeNameTable[11] = "Windows.UI.Xaml.Controls.ContentControl";
+            _typeNameTable[12] = "Boolean";
+            _typeNameTable[13] = "NewsReader.Views.News";
+            _typeNameTable[14] = "Microsoft.Toolkit.Uwp.UI.Controls.UniformGrid";
+            _typeNameTable[15] = "Windows.UI.Xaml.Controls.Grid";
+            _typeNameTable[16] = "Windows.UI.Xaml.Controls.Panel";
+            _typeNameTable[17] = "Int32";
+            _typeNameTable[18] = "Windows.UI.Xaml.Controls.Orientation";
+            _typeNameTable[19] = "System.Nullable`1<Boolean>";
+            _typeNameTable[20] = "System.ValueType";
+            _typeNameTable[21] = "Object";
+            _typeNameTable[22] = "Windows.UI.Xaml.FrameworkElement";
+            _typeNameTable[23] = "Microsoft.Toolkit.Uwp.UI.Extensions.NullableBool";
+            _typeNameTable[24] = "Windows.UI.Xaml.Markup.MarkupExtension";
 
-            _typeTable = new global::System.Type[8];
+            _typeTable = new global::System.Type[25];
             _typeTable[0] = typeof(global::NewsReader.MainPage);
             _typeTable[1] = typeof(global::Windows.UI.Xaml.Controls.Page);
             _typeTable[2] = typeof(global::Windows.UI.Xaml.Controls.UserControl);
-            _typeTable[3] = typeof(global::NewsReader.Views.AddPage);
-            _typeTable[4] = typeof(global::NewsReader.Views.DeletePage);
-            _typeTable[5] = typeof(global::NewsReader.Views.Home);
-            _typeTable[6] = typeof(global::NewsReader.Views.Memes);
-            _typeTable[7] = typeof(global::NewsReader.Views.News);
+            _typeTable[3] = typeof(global::NewsReader.NewsTemplate);
+            _typeTable[4] = typeof(global::System.String);
+            _typeTable[5] = typeof(global::Windows.UI.Xaml.Media.ImageSource);
+            _typeTable[6] = typeof(global::NewsReader.Views.AddPage);
+            _typeTable[7] = typeof(global::NewsReader.Views.DeletePage);
+            _typeTable[8] = typeof(global::NewsReader.Views.Home);
+            _typeTable[9] = typeof(global::NewsReader.Views.Memes);
+            _typeTable[10] = typeof(global::Microsoft.Toolkit.Uwp.UI.Controls.Loading);
+            _typeTable[11] = typeof(global::Windows.UI.Xaml.Controls.ContentControl);
+            _typeTable[12] = typeof(global::System.Boolean);
+            _typeTable[13] = typeof(global::NewsReader.Views.News);
+            _typeTable[14] = typeof(global::Microsoft.Toolkit.Uwp.UI.Controls.UniformGrid);
+            _typeTable[15] = typeof(global::Windows.UI.Xaml.Controls.Grid);
+            _typeTable[16] = typeof(global::Windows.UI.Xaml.Controls.Panel);
+            _typeTable[17] = typeof(global::System.Int32);
+            _typeTable[18] = typeof(global::Windows.UI.Xaml.Controls.Orientation);
+            _typeTable[19] = typeof(global::System.Nullable<global::System.Boolean>);
+            _typeTable[20] = typeof(global::System.ValueType);
+            _typeTable[21] = typeof(global::System.Object);
+            _typeTable[22] = typeof(global::Windows.UI.Xaml.FrameworkElement);
+            _typeTable[23] = typeof(global::Microsoft.Toolkit.Uwp.UI.Extensions.NullableBool);
+            _typeTable[24] = typeof(global::Windows.UI.Xaml.Markup.MarkupExtension);
         }
 
         private int LookupTypeIndexByName(string typeName)
@@ -243,11 +301,15 @@ namespace NewsReader.NewsReader_XamlTypeInfo
         }
 
         private object Activate_0_MainPage() { return new global::NewsReader.MainPage(); }
-        private object Activate_3_AddPage() { return new global::NewsReader.Views.AddPage(); }
-        private object Activate_4_DeletePage() { return new global::NewsReader.Views.DeletePage(); }
-        private object Activate_5_Home() { return new global::NewsReader.Views.Home(); }
-        private object Activate_6_Memes() { return new global::NewsReader.Views.Memes(); }
-        private object Activate_7_News() { return new global::NewsReader.Views.News(); }
+        private object Activate_3_NewsTemplate() { return new global::NewsReader.NewsTemplate(); }
+        private object Activate_6_AddPage() { return new global::NewsReader.Views.AddPage(); }
+        private object Activate_7_DeletePage() { return new global::NewsReader.Views.DeletePage(); }
+        private object Activate_8_Home() { return new global::NewsReader.Views.Home(); }
+        private object Activate_9_Memes() { return new global::NewsReader.Views.Memes(); }
+        private object Activate_10_Loading() { return new global::Microsoft.Toolkit.Uwp.UI.Controls.Loading(); }
+        private object Activate_13_News() { return new global::NewsReader.Views.News(); }
+        private object Activate_14_UniformGrid() { return new global::Microsoft.Toolkit.Uwp.UI.Controls.UniformGrid(); }
+        private object Activate_23_NullableBool() { return new global::Microsoft.Toolkit.Uwp.UI.Extensions.NullableBool(); }
 
         private global::Windows.UI.Xaml.Markup.IXamlType CreateXamlType(int typeIndex)
         {
@@ -274,50 +336,388 @@ namespace NewsReader.NewsReader_XamlTypeInfo
                 xamlType = new global::NewsReader.NewsReader_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
-            case 3:   //  NewsReader.Views.AddPage
-                userType = new global::NewsReader.NewsReader_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.Page"));
-                userType.Activator = Activate_3_AddPage;
+            case 3:   //  NewsReader.NewsTemplate
+                userType = new global::NewsReader.NewsReader_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.UserControl"));
+                userType.Activator = Activate_3_NewsTemplate;
+                userType.AddMemberName("Textfield");
+                userType.AddMemberName("UrlField");
+                userType.AddMemberName("Imagefield");
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;
 
-            case 4:   //  NewsReader.Views.DeletePage
+            case 4:   //  String
+                xamlType = new global::NewsReader.NewsReader_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                break;
+
+            case 5:   //  Windows.UI.Xaml.Media.ImageSource
+                xamlType = new global::NewsReader.NewsReader_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                break;
+
+            case 6:   //  NewsReader.Views.AddPage
                 userType = new global::NewsReader.NewsReader_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.Page"));
-                userType.Activator = Activate_4_DeletePage;
+                userType.Activator = Activate_6_AddPage;
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;
 
-            case 5:   //  NewsReader.Views.Home
+            case 7:   //  NewsReader.Views.DeletePage
                 userType = new global::NewsReader.NewsReader_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.Page"));
-                userType.Activator = Activate_5_Home;
+                userType.Activator = Activate_7_DeletePage;
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;
 
-            case 6:   //  NewsReader.Views.Memes
+            case 8:   //  NewsReader.Views.Home
                 userType = new global::NewsReader.NewsReader_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.Page"));
-                userType.Activator = Activate_6_Memes;
+                userType.Activator = Activate_8_Home;
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;
 
-            case 7:   //  NewsReader.Views.News
+            case 9:   //  NewsReader.Views.Memes
                 userType = new global::NewsReader.NewsReader_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.Page"));
-                userType.Activator = Activate_7_News;
+                userType.Activator = Activate_9_Memes;
                 userType.SetIsLocalType();
                 xamlType = userType;
+                break;
+
+            case 10:   //  Microsoft.Toolkit.Uwp.UI.Controls.Loading
+                userType = new global::NewsReader.NewsReader_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.ContentControl"));
+                userType.Activator = Activate_10_Loading;
+                userType.AddMemberName("IsLoading");
+                xamlType = userType;
+                break;
+
+            case 11:   //  Windows.UI.Xaml.Controls.ContentControl
+                xamlType = new global::NewsReader.NewsReader_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                break;
+
+            case 12:   //  Boolean
+                xamlType = new global::NewsReader.NewsReader_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                break;
+
+            case 13:   //  NewsReader.Views.News
+                userType = new global::NewsReader.NewsReader_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.Page"));
+                userType.Activator = Activate_13_News;
+                userType.SetIsLocalType();
+                xamlType = userType;
+                break;
+
+            case 14:   //  Microsoft.Toolkit.Uwp.UI.Controls.UniformGrid
+                userType = new global::NewsReader.NewsReader_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.Grid"));
+                userType.Activator = Activate_14_UniformGrid;
+                userType.AddMemberName("Columns");
+                userType.AddMemberName("FirstColumn");
+                userType.AddMemberName("Orientation");
+                userType.AddMemberName("Rows");
+                userType.AddMemberName("AutoLayout");
+                userType.SetIsBindable();
+                xamlType = userType;
+                break;
+
+            case 15:   //  Windows.UI.Xaml.Controls.Grid
+                xamlType = new global::NewsReader.NewsReader_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                break;
+
+            case 16:   //  Windows.UI.Xaml.Controls.Panel
+                xamlType = new global::NewsReader.NewsReader_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                break;
+
+            case 17:   //  Int32
+                xamlType = new global::NewsReader.NewsReader_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                break;
+
+            case 18:   //  Windows.UI.Xaml.Controls.Orientation
+                xamlType = new global::NewsReader.NewsReader_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                break;
+
+            case 19:   //  System.Nullable`1<Boolean>
+                userType = new global::NewsReader.NewsReader_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.ValueType"));
+                userType.SetIsReturnTypeStub();
+                xamlType = userType;
+                break;
+
+            case 20:   //  System.ValueType
+                userType = new global::NewsReader.NewsReader_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
+                xamlType = userType;
+                break;
+
+            case 21:   //  Object
+                xamlType = new global::NewsReader.NewsReader_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                break;
+
+            case 22:   //  Windows.UI.Xaml.FrameworkElement
+                xamlType = new global::NewsReader.NewsReader_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                break;
+
+            case 23:   //  Microsoft.Toolkit.Uwp.UI.Extensions.NullableBool
+                userType = new global::NewsReader.NewsReader_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Markup.MarkupExtension"));
+                userType.Activator = Activate_23_NullableBool;
+                userType.AddMemberName("Value");
+                userType.AddMemberName("IsNull");
+                userType.SetIsBindable();
+                userType.SetIsMarkupExtension();
+                xamlType = userType;
+                break;
+
+            case 24:   //  Windows.UI.Xaml.Markup.MarkupExtension
+                xamlType = new global::NewsReader.NewsReader_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
             }
             return xamlType;
         }
 
+        private global::System.Collections.Generic.List<global::Windows.UI.Xaml.Markup.IXamlMetadataProvider> _otherProviders;
+        private global::System.Collections.Generic.List<global::Windows.UI.Xaml.Markup.IXamlMetadataProvider> OtherProviders
+        {
+            get
+            {
+                if(_otherProviders == null)
+                {
+                    var otherProviders = new global::System.Collections.Generic.List<global::Windows.UI.Xaml.Markup.IXamlMetadataProvider>();
+                    global::Windows.UI.Xaml.Markup.IXamlMetadataProvider provider;
+                    provider = new global::Microsoft.Toolkit.Uwp.UI.Controls.Microsoft_Toolkit_Uwp_UI_Controls_XamlTypeInfo.XamlMetaDataProvider() as global::Windows.UI.Xaml.Markup.IXamlMetadataProvider;
+                    otherProviders.Add(provider); 
+                    provider = new global::Microsoft.Toolkit.Uwp.UI.Microsoft_Toolkit_Uwp_UI_XamlTypeInfo.XamlMetaDataProvider() as global::Windows.UI.Xaml.Markup.IXamlMetadataProvider;
+                    otherProviders.Add(provider); 
+                    _otherProviders = otherProviders;
+                }
+                return _otherProviders;
+            }
+        }
 
+        private global::Windows.UI.Xaml.Markup.IXamlType CheckOtherMetadataProvidersForName(string typeName)
+        {
+            global::Windows.UI.Xaml.Markup.IXamlType xamlType = null;
+            global::Windows.UI.Xaml.Markup.IXamlType foundXamlType = null;
+            foreach(global::Windows.UI.Xaml.Markup.IXamlMetadataProvider xmp in OtherProviders)
+            {
+                xamlType = xmp.GetXamlType(typeName);
+                if(xamlType != null)
+                {
+                    if(xamlType.IsConstructible)    // not Constructible means it might be a Return Type Stub
+                    {
+                        return xamlType;
+                    }
+                    foundXamlType = xamlType;
+                }
+            }
+            return foundXamlType;
+        }
+
+        private global::Windows.UI.Xaml.Markup.IXamlType CheckOtherMetadataProvidersForType(global::System.Type type)
+        {
+            global::Windows.UI.Xaml.Markup.IXamlType xamlType = null;
+            global::Windows.UI.Xaml.Markup.IXamlType foundXamlType = null;
+            foreach(global::Windows.UI.Xaml.Markup.IXamlMetadataProvider xmp in OtherProviders)
+            {
+                xamlType = xmp.GetXamlType(type);
+                if(xamlType != null)
+                {
+                    if(xamlType.IsConstructible)    // not Constructible means it might be a Return Type Stub
+                    {
+                        return xamlType;
+                    }
+                    foundXamlType = xamlType;
+                }
+            }
+            return foundXamlType;
+        }
+
+        private object get_0_NewsTemplate_Textfield(object instance)
+        {
+            var that = (global::NewsReader.NewsTemplate)instance;
+            return that.Textfield;
+        }
+        private void set_0_NewsTemplate_Textfield(object instance, object Value)
+        {
+            var that = (global::NewsReader.NewsTemplate)instance;
+            that.Textfield = (global::System.String)Value;
+        }
+        private object get_1_NewsTemplate_UrlField(object instance)
+        {
+            var that = (global::NewsReader.NewsTemplate)instance;
+            return that.UrlField;
+        }
+        private void set_1_NewsTemplate_UrlField(object instance, object Value)
+        {
+            var that = (global::NewsReader.NewsTemplate)instance;
+            that.UrlField = (global::System.String)Value;
+        }
+        private object get_2_NewsTemplate_Imagefield(object instance)
+        {
+            var that = (global::NewsReader.NewsTemplate)instance;
+            return that.Imagefield;
+        }
+        private void set_2_NewsTemplate_Imagefield(object instance, object Value)
+        {
+            var that = (global::NewsReader.NewsTemplate)instance;
+            that.Imagefield = (global::Windows.UI.Xaml.Media.ImageSource)Value;
+        }
+        private object get_3_Loading_IsLoading(object instance)
+        {
+            var that = (global::Microsoft.Toolkit.Uwp.UI.Controls.Loading)instance;
+            return that.IsLoading;
+        }
+        private void set_3_Loading_IsLoading(object instance, object Value)
+        {
+            var that = (global::Microsoft.Toolkit.Uwp.UI.Controls.Loading)instance;
+            that.IsLoading = (global::System.Boolean)Value;
+        }
+        private object get_4_UniformGrid_Columns(object instance)
+        {
+            var that = (global::Microsoft.Toolkit.Uwp.UI.Controls.UniformGrid)instance;
+            return that.Columns;
+        }
+        private void set_4_UniformGrid_Columns(object instance, object Value)
+        {
+            var that = (global::Microsoft.Toolkit.Uwp.UI.Controls.UniformGrid)instance;
+            that.Columns = (global::System.Int32)Value;
+        }
+        private object get_5_UniformGrid_FirstColumn(object instance)
+        {
+            var that = (global::Microsoft.Toolkit.Uwp.UI.Controls.UniformGrid)instance;
+            return that.FirstColumn;
+        }
+        private void set_5_UniformGrid_FirstColumn(object instance, object Value)
+        {
+            var that = (global::Microsoft.Toolkit.Uwp.UI.Controls.UniformGrid)instance;
+            that.FirstColumn = (global::System.Int32)Value;
+        }
+        private object get_6_UniformGrid_Orientation(object instance)
+        {
+            var that = (global::Microsoft.Toolkit.Uwp.UI.Controls.UniformGrid)instance;
+            return that.Orientation;
+        }
+        private void set_6_UniformGrid_Orientation(object instance, object Value)
+        {
+            var that = (global::Microsoft.Toolkit.Uwp.UI.Controls.UniformGrid)instance;
+            that.Orientation = (global::Windows.UI.Xaml.Controls.Orientation)Value;
+        }
+        private object get_7_UniformGrid_Rows(object instance)
+        {
+            var that = (global::Microsoft.Toolkit.Uwp.UI.Controls.UniformGrid)instance;
+            return that.Rows;
+        }
+        private void set_7_UniformGrid_Rows(object instance, object Value)
+        {
+            var that = (global::Microsoft.Toolkit.Uwp.UI.Controls.UniformGrid)instance;
+            that.Rows = (global::System.Int32)Value;
+        }
+        private object get_8_UniformGrid_AutoLayout(object instance)
+        {
+            return global::Microsoft.Toolkit.Uwp.UI.Controls.UniformGrid.GetAutoLayout((global::Windows.UI.Xaml.FrameworkElement)instance);
+        }
+        private void set_8_UniformGrid_AutoLayout(object instance, object Value)
+        {
+            global::Microsoft.Toolkit.Uwp.UI.Controls.UniformGrid.SetAutoLayout((global::Windows.UI.Xaml.FrameworkElement)instance, (global::System.Nullable<global::System.Boolean>)Value);
+        }
+        private object get_9_NullableBool_Value(object instance)
+        {
+            var that = (global::Microsoft.Toolkit.Uwp.UI.Extensions.NullableBool)instance;
+            return that.Value;
+        }
+        private void set_9_NullableBool_Value(object instance, object Value)
+        {
+            var that = (global::Microsoft.Toolkit.Uwp.UI.Extensions.NullableBool)instance;
+            that.Value = (global::System.Boolean)Value;
+        }
+        private object get_10_NullableBool_IsNull(object instance)
+        {
+            var that = (global::Microsoft.Toolkit.Uwp.UI.Extensions.NullableBool)instance;
+            return that.IsNull;
+        }
+        private void set_10_NullableBool_IsNull(object instance, object Value)
+        {
+            var that = (global::Microsoft.Toolkit.Uwp.UI.Extensions.NullableBool)instance;
+            that.IsNull = (global::System.Boolean)Value;
+        }
 
         private global::Windows.UI.Xaml.Markup.IXamlMember CreateXamlMember(string longMemberName)
         {
             global::NewsReader.NewsReader_XamlTypeInfo.XamlMember xamlMember = null;
-            // No Local Properties
+            global::NewsReader.NewsReader_XamlTypeInfo.XamlUserType userType;
+
+            switch (longMemberName)
+            {
+            case "NewsReader.NewsTemplate.Textfield":
+                userType = (global::NewsReader.NewsReader_XamlTypeInfo.XamlUserType)GetXamlTypeByName("NewsReader.NewsTemplate");
+                xamlMember = new global::NewsReader.NewsReader_XamlTypeInfo.XamlMember(this, "Textfield", "String");
+                xamlMember.Getter = get_0_NewsTemplate_Textfield;
+                xamlMember.Setter = set_0_NewsTemplate_Textfield;
+                break;
+            case "NewsReader.NewsTemplate.UrlField":
+                userType = (global::NewsReader.NewsReader_XamlTypeInfo.XamlUserType)GetXamlTypeByName("NewsReader.NewsTemplate");
+                xamlMember = new global::NewsReader.NewsReader_XamlTypeInfo.XamlMember(this, "UrlField", "String");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_1_NewsTemplate_UrlField;
+                xamlMember.Setter = set_1_NewsTemplate_UrlField;
+                break;
+            case "NewsReader.NewsTemplate.Imagefield":
+                userType = (global::NewsReader.NewsReader_XamlTypeInfo.XamlUserType)GetXamlTypeByName("NewsReader.NewsTemplate");
+                xamlMember = new global::NewsReader.NewsReader_XamlTypeInfo.XamlMember(this, "Imagefield", "Windows.UI.Xaml.Media.ImageSource");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_2_NewsTemplate_Imagefield;
+                xamlMember.Setter = set_2_NewsTemplate_Imagefield;
+                break;
+            case "Microsoft.Toolkit.Uwp.UI.Controls.Loading.IsLoading":
+                userType = (global::NewsReader.NewsReader_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.Toolkit.Uwp.UI.Controls.Loading");
+                xamlMember = new global::NewsReader.NewsReader_XamlTypeInfo.XamlMember(this, "IsLoading", "Boolean");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_3_Loading_IsLoading;
+                xamlMember.Setter = set_3_Loading_IsLoading;
+                break;
+            case "Microsoft.Toolkit.Uwp.UI.Controls.UniformGrid.Columns":
+                userType = (global::NewsReader.NewsReader_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.Toolkit.Uwp.UI.Controls.UniformGrid");
+                xamlMember = new global::NewsReader.NewsReader_XamlTypeInfo.XamlMember(this, "Columns", "Int32");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_4_UniformGrid_Columns;
+                xamlMember.Setter = set_4_UniformGrid_Columns;
+                break;
+            case "Microsoft.Toolkit.Uwp.UI.Controls.UniformGrid.FirstColumn":
+                userType = (global::NewsReader.NewsReader_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.Toolkit.Uwp.UI.Controls.UniformGrid");
+                xamlMember = new global::NewsReader.NewsReader_XamlTypeInfo.XamlMember(this, "FirstColumn", "Int32");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_5_UniformGrid_FirstColumn;
+                xamlMember.Setter = set_5_UniformGrid_FirstColumn;
+                break;
+            case "Microsoft.Toolkit.Uwp.UI.Controls.UniformGrid.Orientation":
+                userType = (global::NewsReader.NewsReader_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.Toolkit.Uwp.UI.Controls.UniformGrid");
+                xamlMember = new global::NewsReader.NewsReader_XamlTypeInfo.XamlMember(this, "Orientation", "Windows.UI.Xaml.Controls.Orientation");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_6_UniformGrid_Orientation;
+                xamlMember.Setter = set_6_UniformGrid_Orientation;
+                break;
+            case "Microsoft.Toolkit.Uwp.UI.Controls.UniformGrid.Rows":
+                userType = (global::NewsReader.NewsReader_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.Toolkit.Uwp.UI.Controls.UniformGrid");
+                xamlMember = new global::NewsReader.NewsReader_XamlTypeInfo.XamlMember(this, "Rows", "Int32");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_7_UniformGrid_Rows;
+                xamlMember.Setter = set_7_UniformGrid_Rows;
+                break;
+            case "Microsoft.Toolkit.Uwp.UI.Controls.UniformGrid.AutoLayout":
+                userType = (global::NewsReader.NewsReader_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.Toolkit.Uwp.UI.Controls.UniformGrid");
+                xamlMember = new global::NewsReader.NewsReader_XamlTypeInfo.XamlMember(this, "AutoLayout", "System.Nullable`1<Boolean>");
+                xamlMember.SetTargetTypeName("Windows.UI.Xaml.FrameworkElement");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.SetIsAttachable();
+                xamlMember.Getter = get_8_UniformGrid_AutoLayout;
+                xamlMember.Setter = set_8_UniformGrid_AutoLayout;
+                break;
+            case "Microsoft.Toolkit.Uwp.UI.Extensions.NullableBool.Value":
+                userType = (global::NewsReader.NewsReader_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.Toolkit.Uwp.UI.Extensions.NullableBool");
+                xamlMember = new global::NewsReader.NewsReader_XamlTypeInfo.XamlMember(this, "Value", "Boolean");
+                xamlMember.Getter = get_9_NullableBool_Value;
+                xamlMember.Setter = set_9_NullableBool_Value;
+                break;
+            case "Microsoft.Toolkit.Uwp.UI.Extensions.NullableBool.IsNull":
+                userType = (global::NewsReader.NewsReader_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.Toolkit.Uwp.UI.Extensions.NullableBool");
+                xamlMember = new global::NewsReader.NewsReader_XamlTypeInfo.XamlMember(this, "IsNull", "Boolean");
+                xamlMember.Getter = get_10_NullableBool_IsNull;
+                xamlMember.Setter = set_10_NullableBool_IsNull;
+                break;
+            }
             return xamlMember;
         }
     }

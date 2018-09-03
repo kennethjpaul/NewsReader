@@ -5,11 +5,25 @@
     xmlns:local="using:NewsReader.Views"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:local1="using:NewsReader"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
         <TextBlock>Memes</TextBlock>
+        <local1:NewsTemplate Grid.Row="1" 
+            Textfield="ssssssssssssssss"
+            >
+        </local1:NewsTemplate>
     </Grid>
 </Page>
 

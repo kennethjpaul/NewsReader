@@ -13,10 +13,12 @@
             x:Name="navigationPanel"
             IsBackEnabled ="True"           
                                               
+            
             >
-
+    
             <Frame x:ConnectionId='3' x:Name="contentFrame"></Frame>
         </NavigationView>
+       
     </Grid>
 </Page>
 
