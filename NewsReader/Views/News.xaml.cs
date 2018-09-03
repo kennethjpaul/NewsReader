@@ -41,7 +41,6 @@ namespace NewsReader.Views
         {
             LoadingControl.IsLoading = true;
             string pageID = e.Parameter.ToString();
-          //  LoadNewsItems(tmp);
             Task t = Task.Factory.StartNew(()=>LoadNewsItems(pageID));
             
         }
@@ -95,10 +94,6 @@ namespace NewsReader.Views
 
                         scrollTest2.Children.Add(tile);
                     });
-                   // Debug.WriteLine(link_clean);
-                   // Debug.WriteLine("");
-
-
 
                 }
             }
@@ -109,16 +104,34 @@ namespace NewsReader.Views
 
         private void NavigateToWebPage(object sender, PointerRoutedEventArgs e)
         {
-
+            LoadingWeb.IsLoading = true;
+            scrollTest.Visibility = Visibility.Collapsed;
             var tile = sender as NewsTemplate;
             var url = tile.UrlField;
-            var url_uri = new System.Uri(url);
-            Debug.WriteLine(url);
-            WebBrowser.Navigate(url_uri);
-            WebBrowser.Visibility = Visibility.Visible;
-            hideBrowser.Visibility = Visibility.Visible;
+
+            Task t = Task.Factory.StartNew(() => LoadWebPage(url));
+
+            Debug.WriteLine(url);                        
+            
         }
 
+        private void LoadWebPage(string url)
+        {
+            var url_uri = new System.Uri(url);
+            var ig = Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () => {
+                WebBrowser.Navigate(url_uri);
+                WebBrowser.NavigationCompleted += ShowWebpage;
+            });
+           
+            
+        }
+
+        private void ShowWebpage(WebView sender, WebViewNavigationCompletedEventArgs args)
+        {
+            WebBrowser.Visibility = Visibility.Visible;
+            hideBrowser.Visibility = Visibility.Visible;
+            LoadingWeb.IsLoading = false;
+        }
         string GetCleanLink(string link)
         {
 
@@ -160,6 +173,7 @@ namespace NewsReader.Views
         {
             WebBrowser.Visibility = Visibility.Collapsed;
             hideBrowser.Visibility = Visibility.Collapsed;
+            scrollTest.Visibility = Visibility.Visible;
         }
     }
 }

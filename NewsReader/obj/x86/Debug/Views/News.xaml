@@ -29,12 +29,23 @@
                 <TextBlock Text="We are getting the links for you :)" Foreground="Black" VerticalAlignment="Center" />
             </StackPanel>
         </controls:Loading>
-        <Button x:ConnectionId='4' x:Name="hideBrowser" Visibility="Collapsed" Grid.Row="0"                          > Close Browser</Button>
-        <ScrollViewer x:ConnectionId='5' HorizontalScrollMode="Auto" x:Name="scrollTest" Grid.Row="1" Grid.RowSpan="7">
-            <VariableSizedWrapGrid x:ConnectionId='7' Height="auto" Width="auto" Orientation="Horizontal" x:Name="scrollTest2">                
+
+        <controls:Loading x:ConnectionId='4' x:Name="LoadingWeb" IsLoading="{Binding IsBusy}"  >
+            <StackPanel Orientation="Horizontal" Padding="12">
+                <Grid Margin="0,0,8,0">
+                    <Image Source="../../Assets/ToolkitLogo.png" Height="50" />
+                    <ProgressRing IsActive="True" Foreground="Blue" />
+                </Grid>
+                <TextBlock Text="Opening the Web Browser :)" Foreground="Black" VerticalAlignment="Center" />
+            </StackPanel>
+        </controls:Loading>
+
+        <Button x:ConnectionId='5' x:Name="hideBrowser" Visibility="Collapsed" Grid.Row="0"                          > Close Browser</Button>
+        <ScrollViewer x:ConnectionId='6' HorizontalScrollMode="Auto" x:Name="scrollTest" Grid.Row="1" Grid.RowSpan="7">
+            <VariableSizedWrapGrid x:ConnectionId='8' Height="auto" Width="auto" Orientation="Horizontal" x:Name="scrollTest2">                
             </VariableSizedWrapGrid>
         </ScrollViewer>
-        <WebView x:ConnectionId='6' x:Name="WebBrowser" Visibility="Collapsed"  Grid.Row="1" Grid.RowSpan="7"></WebView>
+        <WebView x:ConnectionId='7' x:Name="WebBrowser" Visibility="Collapsed"  Grid.Row="1" Grid.RowSpan="7"></WebView>
     </Grid>
 </Page>
 

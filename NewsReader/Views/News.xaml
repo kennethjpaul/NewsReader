@@ -29,6 +29,17 @@
                 <TextBlock Text="We are getting the links for you :)" Foreground="Black" VerticalAlignment="Center" />
             </StackPanel>
         </controls:Loading>
+
+        <controls:Loading x:Name="LoadingWeb" IsLoading="{Binding IsBusy}"  >
+            <StackPanel Orientation="Horizontal" Padding="12">
+                <Grid Margin="0,0,8,0">
+                    <Image Source="../../Assets/ToolkitLogo.png" Height="50" />
+                    <ProgressRing IsActive="True" Foreground="Blue" />
+                </Grid>
+                <TextBlock Text="Opening the Web Browser :)" Foreground="Black" VerticalAlignment="Center" />
+            </StackPanel>
+        </controls:Loading>
+
         <Button x:Name="hideBrowser" Visibility="Collapsed" Grid.Row="0" Click="HideBrowser_Click"> Close Browser</Button>
         <ScrollViewer HorizontalScrollMode="Auto" x:Name="scrollTest" Grid.Row="1" Grid.RowSpan="7">
             <VariableSizedWrapGrid Height="auto" Width="auto" Orientation="Horizontal" x:Name="scrollTest2">                
