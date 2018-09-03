@@ -31,13 +31,13 @@
     <AppXManifest Include="D:\Personal\Projects\C#\UWP\NewsReader\NewsReader\NewsReader\bin\x86\Debug\Core\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2018-09-03T00:54:16.032</Modified>
+      <Modified>2018-09-03T01:16:33.822</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="D:\Personal\Projects\C#\UWP\NewsReader\NewsReader\NewsReader\bin\x86\Debug\NewsReader.exe">
       <PackagePath>entrypoint\NewsReader.exe</PackagePath>
-      <Modified>2018-09-03T00:54:14.642</Modified>
+      <Modified>2018-09-03T01:16:32.567</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Kenneth\.nuget\packages\colorcode.core\2.0.5\lib\netstandard1.4\ColorCode.Core.dll">
       <PackagePath>ColorCode.Core.dll</PackagePath>
@@ -839,35 +839,35 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\Personal\Projects\C#\UWP\NewsReader\NewsReader\NewsReader\bin\x86\Debug\App.xbf">
       <PackagePath>App.xbf</PackagePath>
-      <Modified>2018-09-03T00:54:14.437</Modified>
+      <Modified>2018-09-03T01:16:32.361</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\Personal\Projects\C#\UWP\NewsReader\NewsReader\NewsReader\bin\x86\Debug\MainPage.xbf">
       <PackagePath>MainPage.xbf</PackagePath>
-      <Modified>2018-09-03T00:54:14.437</Modified>
+      <Modified>2018-09-03T01:16:32.362</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\Personal\Projects\C#\UWP\NewsReader\NewsReader\NewsReader\bin\x86\Debug\NewsTemplate.xbf">
       <PackagePath>NewsTemplate.xbf</PackagePath>
-      <Modified>2018-09-03T00:54:14.437</Modified>
+      <Modified>2018-09-03T01:16:32.362</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\Personal\Projects\C#\UWP\NewsReader\NewsReader\NewsReader\bin\x86\Debug\Views\AddPage.xbf">
       <PackagePath>Views\AddPage.xbf</PackagePath>
-      <Modified>2018-09-03T00:54:14.438</Modified>
+      <Modified>2018-09-03T01:16:32.362</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\Personal\Projects\C#\UWP\NewsReader\NewsReader\NewsReader\bin\x86\Debug\Views\DeletePage.xbf">
       <PackagePath>Views\DeletePage.xbf</PackagePath>
-      <Modified>2018-09-03T00:54:14.438</Modified>
+      <Modified>2018-09-03T01:16:32.362</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\Personal\Projects\C#\UWP\NewsReader\NewsReader\NewsReader\bin\x86\Debug\Views\Home.xbf">
       <PackagePath>Views\Home.xbf</PackagePath>
-      <Modified>2018-09-03T00:54:14.438</Modified>
+      <Modified>2018-09-03T01:16:32.362</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\Personal\Projects\C#\UWP\NewsReader\NewsReader\NewsReader\bin\x86\Debug\Views\Memes.xbf">
       <PackagePath>Views\Memes.xbf</PackagePath>
-      <Modified>2018-09-03T00:54:14.438</Modified>
+      <Modified>2018-09-03T01:16:32.363</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\Personal\Projects\C#\UWP\NewsReader\NewsReader\NewsReader\bin\x86\Debug\Views\News.xbf">
       <PackagePath>Views\News.xbf</PackagePath>
-      <Modified>2018-09-03T00:54:14.438</Modified>
+      <Modified>2018-09-03T01:16:32.363</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Program Files %28x86%29\Windows Kits\10\UnionMetadata\10.0.17134.0\Windows.winmd">
       <PackagePath>WinMetadata\Windows.winmd</PackagePath>
@@ -1224,7 +1224,7 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\Personal\Projects\C#\UWP\NewsReader\NewsReader\NewsReader\bin\x86\Debug\Core\NewsReader.exe">
       <PackagePath>NewsReader.exe</PackagePath>
-      <Modified>2018-09-03T00:54:16.024</Modified>
+      <Modified>2018-09-03T01:16:33.812</Modified>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>

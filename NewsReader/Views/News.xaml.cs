@@ -36,30 +36,18 @@ namespace NewsReader.Views
         {
             this.InitializeComponent();
         }
-        public delegate string Del(string message);
-
-        public static event Del gotLink;
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            gotLink += DelegateMethod;
-          //  LoadingControl.IsLoading = true;
-            string tmp = e.Parameter.ToString();
-            LoadNewsItems(tmp);
-          //  Task t = Task.Factory.StartNew(()=>LoadNewsItems(tmp));
+            LoadingControl.IsLoading = true;
+            string pageID = e.Parameter.ToString();
+          //  LoadNewsItems(tmp);
+            Task t = Task.Factory.StartNew(()=>LoadNewsItems(pageID));
             
         }
 
-      
-
-        public string DelegateMethod(string message)
-        {
-            Debug.WriteLine(message);
-            LoadingControl.IsLoading = false;
-            return "";
-        }
-
-        private string LoadNewsItems(string pageID)
+     
+        private void LoadNewsItems(string pageID)
         {
             
             var url= "https://www.facebook.com/pages_reaction_units/more/?page_id=" + pageID + "&cursor=%7B%22card_id%22%3A%22page_posts_divider%22%2C%22has_next_page%22%3Atrue%7D&surface=www_pages_home&unit_count=8&dpr=1&__user=0&__a=1";
@@ -95,23 +83,28 @@ namespace NewsReader.Views
                     var title_unclean = a.FirstChild.FirstChild;
                     string title_clean = GetCleanTitle(title_unclean.InnerHtml);
 
+                    var im = Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () => {
+                        var tile = new NewsTemplate
+                        {
+                            Textfield = title_clean,
+                            Imagefield = new BitmapImage(new Uri(img_clean, UriKind.Absolute)),
+                            UrlField = link_clean
+
+                        };
+                        tile.PointerReleased += NavigateToWebPage;
+
+                        scrollTest2.Children.Add(tile);
+                    });
                    // Debug.WriteLine(link_clean);
                    // Debug.WriteLine("");
 
-                    var tile = new NewsTemplate
-                    {
-                        Textfield = title_clean,
-                        Imagefield = new BitmapImage(new Uri(img_clean, UriKind.Absolute)),
-                        UrlField = link_clean
 
-                    };
-                    tile.PointerReleased += NavigateToWebPage;
-
-                    scrollTest2.Children.Add(tile);
 
                 }
             }
-            return gotLink("Done");
+            var ig = Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () => {
+                LoadingControl.IsLoading = false;
+            });
         }
 
         private void NavigateToWebPage(object sender, PointerRoutedEventArgs e)
